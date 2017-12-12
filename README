@@ -1,0 +1,30 @@
+Marinus Alexandru
+Grupa 324CC
+
+In realizarea temei, am implementat clientul si serverul pe baza
+scheletului de cod pentru laboratorul de multiplexare, carora le-am
+adus urmatoarele modificari.
+
+Pentru server, am adaugat o structura pentru memorarea datelor ce caracterizeaza
+un client conectat ( socket file descriptor, numele si portul prin care se identifica,
+adresa IP, timpul de conectare si un map pentru fisierele partajate ) si doua mapuri
+pentru evidenta clientilor.
+
+Primul map foloseste drept cheie sockfd-ul, iar al doilea, numele clientului.
+Motivul pentru care am utilizat doua mapuri este acela ca in momentul apelarii
+de catre server a accept()-ului , el nu are acces la nume, cel din urma putand fi obtinut
+doar in urma primirii mesajului de identificare.
+
+Pentru client, am adaugat un map in care stochez fisierele partajate de acesta, sub forma
+de perechi "<fisier> <dimensiune in Bytes>" , si un alt map in care memorez informatia
+obtinuta in urma apelului comenzii infoclients, sub forma de perechi
+"<client> <IP si port>".
+
+Mesajul de identificare are forma : "DateClient: <nume_client> <port_client>.
+
+Mesajul trimis catre server pentru comanda share are forma:
+"share <fisier> <dim_fisier>", unde dim_fisier repreizinta dimensiunea in Bytes a fisierului
+de partajat. Conversiunea user-friendly a dimensiunii este realizata de catre server.
+
+Toate comenzile, cu exceptia a getfile si history, sunt complet implementate.
+Detalii despre implementare se gasesc in comentariile surselor.
