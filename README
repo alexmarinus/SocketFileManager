@@ -26,5 +26,4 @@ Mesajul trimis catre server pentru comanda share are forma:
 "share <fisier> <dim_fisier>", unde dim_fisier repreizinta dimensiunea in Bytes a fisierului
 de partajat. Conversiunea user-friendly a dimensiunii este realizata de catre server.
 
-Toate comenzile, cu exceptia a getfile si history, sunt complet implementate.
 Detalii despre implementare se gasesc in comentariile surselor.
